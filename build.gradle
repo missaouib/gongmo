@@ -38,6 +38,7 @@ subprojects {
         /**
          * Spring
          */
+        implementation 'org.springframework.boot:spring-boot-starter-actuator'
         implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 //        implementation 'org.springframework.boot:spring-boot-starter-mail'
         implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -62,13 +63,14 @@ subprojects {
 
         runtimeOnly 'com.h2database:h2'
         implementation 'org.postgresql:postgresql'
+//        compile 'mysql:mysql-connector-java'
 //        implementation 'com.oracle.ojdbc:ojdbc10:19.3.0.0'
         /**
          * Etc
          */
         implementation 'joda-time:joda-time'
         implementation 'org.jadira.usertype:usertype.core:6.0.1.GA'
-        runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+        developmentOnly 'org.springframework.boot:spring-boot-devtools'
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.projectlombok:lombok'
         implementation 'com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20190325.1'
@@ -88,8 +90,9 @@ subprojects {
         /**
          * Test
          */
-        testImplementation group: 'junit', name: 'junit', version: '4.12'
-        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation('org.springframework.boot:spring-boot-starter-test'){
+            exclude group : 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
         testImplementation 'org.springframework.security:spring-security-test'
 
     }

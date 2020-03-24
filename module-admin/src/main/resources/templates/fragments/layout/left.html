@@ -7,7 +7,39 @@
     </head>
     <body>
         <div th:fragment="left" th:remove="tag" th:with="YNType = ${T(com.gig.lookBook.core.model.types.YNType)}">
-            <aside class="main-sidebar">
+            <aside class="main-sidebar" th:with="URL = ${#httpServletRequest.requestURI}">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar" style="height: auto;" th:with="UrlArray = ${#strings.arraySplit(URL, '/')}">
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu tree" data-widget="tree" th:with="path = ${UrlArray.length > 0 ? '/' + UrlArray[0] : ''}">
+                        <th:block th:if="${not #lists.isEmpty(menus)}" th:each="side: ${menus}"
+                                  th:with="classValue = ${path == side.url ? 'active' : ''}">
+                            <input type="hidden" th:value="${side.url}" />
+
+                            <li th:classappend="${not #lists.isEmpty(side.children) ? classValue + ' treeview' : classValue}">
+                                <a th:href="${#lists.isEmpty(side.children) ? side.url : '#'}">
+                                    <i th:class="${side.iconClass}"></i>
+                                    <span th:text="${side.menuName}"></span>
+
+                                    <span th:if="${not #lists.isEmpty(side.children)}" class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul th:if="${not #lists.isEmpty(side.children)}" class="treeview-menu">
+                                    <li th:each="child: ${side.children}"
+                                        th:classappend="${#httpServletRequest.requestURI == child.url ? 'active' : ''}">
+                                        <input type="hidden" th:value="${child.url}" />
+                                        <a th:href="${child.url}">
+                                            <i class="fa fa-circle-o"></i>
+                                            [[${child.menuName}]]
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </th:block>
+                    </ul>
+                </section>
+                <!-- /.sidebar -->
             </aside>
         </div>
     </body>

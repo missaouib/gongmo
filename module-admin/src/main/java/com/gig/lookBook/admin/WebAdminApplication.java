@@ -24,7 +24,11 @@ public class WebAdminApplication extends SpringBootServletInitializer {
         return builder.sources(WebAdminApplication.class);
     }
 
-    public static void main(String[] args) { SpringApplication.run(WebAdminApplication.class, args); }
+    public static void main(String[] args) {
+        SpringApplication.run(WebAdminApplication.class, args);
+
+
+    }
 
     @PostConstruct
     public void setUp() { objectMapper.registerModule(new JavaTimeModule()); }

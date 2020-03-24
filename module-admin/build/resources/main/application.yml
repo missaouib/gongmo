@@ -1,15 +1,9 @@
 spring:
   profiles:
-    active: catchreview
-    datasource:
-      url: jdbc:h2:tcp://localhost/~/test
-      username: root
-      password: 1234
-      driver-class-name: org.h2.Driver
+    active: local
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    properties.hibernate.hbm2ddl.auto: update
-    show-sql: true
+    properties:
+      jadira.usertype.autoRegisterUserTypes: true
   thymeleaf:
     cache: false
     mode: HTML
@@ -17,9 +11,6 @@ spring:
     multipart:
       max-request-size: 100MB
       max-file-size: 50MB
-  jmx:
-    default-domain: mcp #하나의 톰켓에 여려개의 app을 띄우기 위한 설정
-
 server:
   servlet:
     timeout: 3600
