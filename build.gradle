@@ -1,0 +1,148 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.8.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id "org.sonarqube" version "2.7.1"
+    id 'java'
+}
+
+ext["hibernate.version"] = "5.4.5.Final"
+
+allprojects {
+    repositories {
+        mavenCentral()
+        maven {
+            url 'https://repo.spring.io/libs-milestone'
+        }
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'org.springframework.boot'
+
+    group 'com.gig'
+    sourceCompatibility = JavaVersion.VERSION_11
+
+    configurations {
+        developmentOnly
+        runtimeClasspath {
+            extendsFrom developmentOnly
+        }
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+    dependencies {
+        /**
+         * Spring
+         */
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//        implementation 'org.springframework.boot:spring-boot-starter-mail'
+        implementation 'org.springframework.boot:spring-boot-starter-security'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+
+        /**
+         * Spring Mo1bile
+         */
+        implementation 'org.springframework.mobile:spring-mobile-device:2.0.0.M3'
+        developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+        /**
+         * Thymeleaf
+         */
+        implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+        implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+        implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+
+        /**
+         * DB
+         */
+
+        runtimeOnly 'com.h2database:h2'
+        implementation 'org.postgresql:postgresql'
+//        implementation 'com.oracle.ojdbc:ojdbc10:19.3.0.0'
+        /**
+         * Etc
+         */
+        implementation 'joda-time:joda-time'
+        implementation 'org.jadira.usertype:usertype.core:6.0.1.GA'
+        runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        implementation 'com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20190325.1'
+        implementation 'org.apache.commons:commons-lang3:3.7'
+        implementation "org.apache.commons:commons-text:1.6"
+        implementation "org.apache.commons:commons-compress:1.18"
+        annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+        implementation 'com.googlecode.json-simple:json-simple:1.1'
+
+        /**
+         * File
+         */
+        implementation 'com.google.code.gson:gson:2.8.2'
+        implementation 'commons-fileupload:commons-fileupload:1.4'
+        implementation 'org.apache.tika:tika-core:1.18'
+
+        /**
+         * Test
+         */
+        testImplementation group: 'junit', name: 'junit', version: '4.12'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation 'org.springframework.security:spring-security-test'
+
+    }
+
+    clean {
+        delete 'out'
+    }
+}
+
+
+project(":module-core") {
+    version = '0.1.0'
+
+    bootJar.enabled = false
+    jar.enabled = true
+}
+
+project(':module-web') {
+    apply plugin: 'war'
+    version = '0.1.0'
+
+    bootWar.enabled = false
+    war.enabled = true
+
+    war {
+        archivesBaseName = "web"
+        archiveFileName = "ROOT.war"
+    }
+
+    dependencies {
+        implementation project(':module-core')
+        providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    }
+}
+
+project(':module-admin') {
+    apply plugin: 'war'
+    version = '0.1.0'
+
+    bootWar.enabled = false
+    war.enabled = true
+
+    war {
+        archivesBaseName = "admin"
+        archiveFileName = "ROOT.war"
+    }
+    dependencies {
+        implementation project(':module-core')
+        providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+

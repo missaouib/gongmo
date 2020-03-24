@@ -1,0 +1,2 @@
+rootProject.name = 'lookBook'
+include 'module-admin', 'module-web', 'module-core'
