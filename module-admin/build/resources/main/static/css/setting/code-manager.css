@@ -1,0 +1,38 @@
+.code-panel {
+    margin: 0 0 15px 0;
+}
+
+.code-list-header, .code-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: auto;
+}
+
+.code-list-header > li, .code-list > li {
+    border-radius: 2px;
+    padding: 10px;
+    margin-bottom: 2px;
+    /*border-left: 2px solid #e6e7e8;*/
+    margin-left: 0;
+    margin-right: 0;
+    color: #444;
+}
+
+.code-list-header {
+    border-bottom: solid 1px #c2c2c2;
+}
+
+.code-list .handle {
+    display: inline-block;
+    cursor: move;
+    margin: 0 5px;
+}
+
+.code-list .code {
+    cursor: pointer;
+}
+
+.code-list .code:hover {
+    text-decoration: underline;
+}
