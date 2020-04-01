@@ -14,10 +14,8 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * 메뉴 리파지토리
- *
- * @author prographer
- * @date: 2019-04-09
+ * @author Jake
+ * @date: 20/04/01
  */
 @Repository
 public interface MenuRepository extends JpaRepository<Menu, Long> {

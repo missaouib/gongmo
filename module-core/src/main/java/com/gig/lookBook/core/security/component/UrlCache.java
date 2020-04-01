@@ -20,10 +20,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Role URL Cache
- *
- * @author prographer
- * @date: 10/22/19
+ * @author Jake
+ * @date: 20/04/01
  */
 @Component
 public class UrlCache extends LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> {

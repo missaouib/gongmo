@@ -21,10 +21,8 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * 사용자 상세정보 서비스
- *
- * @author prographer
- * @date 2019-04-09
+ * @author Jake
+ * @date: 20/04/01
  */
 @Service
 @Slf4j

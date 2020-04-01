@@ -14,10 +14,8 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * 사용자 리파지토리
- *
- * @author prographer
- * @date 2019-04-09
+ * @author Jake
+ * @date: 20/04/01
  */
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {

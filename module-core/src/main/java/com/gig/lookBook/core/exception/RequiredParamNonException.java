@@ -3,10 +3,8 @@ package com.gig.lookBook.core.exception;
 import lombok.NoArgsConstructor;
 
 /**
- * 필수 파라메터 없음
- *
- * @author prographer
- * @date: 2019-04-19
+ * @author Jake
+ * @date: 20/04/01
  */
 @NoArgsConstructor
 public class RequiredParamNonException extends Exception {

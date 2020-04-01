@@ -6,10 +6,8 @@ import org.springframework.security.core.GrantedAuthority;
 import java.util.Collection;
 
 /**
- * 로그인 유저 정보
- *
- * @author prographer
- * @date 2019-04-09
+ * @author Jake
+ * @date: 20/04/01
  */
 public class LoginUser extends org.springframework.security.core.userdetails.User {
     private Account loginAccount;

@@ -11,10 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 /**
- * 로그인 프로바이더
- *
- * @author prographer
- * @date 2019-04-09
+ * @author Jake
+ * @date: 20/04/01
  */
 @Component
 public class UserDetailsAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {

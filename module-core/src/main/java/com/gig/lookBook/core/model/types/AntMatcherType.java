@@ -1,8 +1,8 @@
 package com.gig.lookBook.core.model.types;
 
 /**
- * @author prographer
- * @date: 10/30/19
+ * @author Jake
+ * @date: 20/04/01
  */
 public enum AntMatcherType {
     /**
