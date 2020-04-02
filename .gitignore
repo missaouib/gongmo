@@ -2,4 +2,4 @@
 /.gradle/
 /module-core/build/
 .idea
-build
+/build/

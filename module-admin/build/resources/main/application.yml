@@ -1,9 +1,9 @@
 spring:
   profiles:
     active: local
-  jpa:
-    properties:
-      jadira.usertype.autoRegisterUserTypes: true
+#  jpa:
+#    properties:
+#      jadira.usertype.autoRegisterUserTypes: true
   thymeleaf:
     cache: false
     mode: HTML
