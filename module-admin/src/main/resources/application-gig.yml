@@ -1,28 +1,40 @@
 spring:
-  profiles: bookreview
+  profiles: gig
   datasource:
-    url: jdbc:postgresql://bookreview.c7aa5jkdnnib.ap-northeast-2.rds.amazonaws.com:5432/bookreview?currentSchema=csmc
-    username: postgresql
-    password: 798513yy
-    driver-class-name: org.postgresql.Driver
+    url: jdbc:mysql://localhost:3306/lookbook?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: gig123$
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
     hikari:
       minimum-idle: 10
       maximum-pool-size: 20
-      pool-name: CSM-HikariCP-POOL
+      pool-name: IMB-AC-HikariCP-POOL
       max-lifetime: 2000000
       connection-timeout: 30000
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+        useLocalSessionState: true
+        rewriteBatchedStatements: true
+        cacheResultSetMetadata: true
+        cacheServerConfiguration: true
+        elideSetAutoCommits: true
+        maintainTimeStats: false
   jpa:
     hibernate:
       connection:
         provider_class: org.hibernate.hikaricp.internal.HikariCPConnectionProvider
     properties:
       hibernate:
-        default_schema: csmc
+        default_schema: gfs
         show_sql: false
         format_sql: true
         use_sql: true
         hbm2ddl.auto: update
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
         enable_lazy_load_no_trans: true
         use_sql_comments: true
         jdbc:
@@ -33,5 +45,5 @@ spring:
       enabled: false
     livereload:
       enabled: true
-    main:
-      allow-bean-definition-overriding: true
+  main:
+    allow-bean-definition-overriding: true

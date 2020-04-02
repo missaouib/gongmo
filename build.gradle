@@ -64,7 +64,7 @@ subprojects {
         runtimeOnly 'com.h2database:h2'
 //        implementation 'com.oracle.ojdbc:ojdbc10:19.3.0.0'
 //        implementation 'org.postgresql:postgresql'
-//        runtimeOnly 'mysql:mysql-connector-java'
+        runtimeOnly 'mysql:mysql-connector-java'
 //        implementation 'com.oracle.ojdbc:ojdbc10:19.3.0.0'
         /**
          * Etc

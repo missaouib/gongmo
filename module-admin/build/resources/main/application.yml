@@ -1,9 +1,9 @@
 spring:
   profiles:
-    active: local
-#  jpa:
-#    properties:
-#      jadira.usertype.autoRegisterUserTypes: true
+    active: gig
+  jpa:
+    properties:
+      jadira.usertype.autoRegisterUserTypes: true
   thymeleaf:
     cache: false
     mode: HTML
@@ -11,6 +11,9 @@ spring:
     multipart:
       max-request-size: 100MB
       max-file-size: 50MB
+  main:
+    allow-bean-definition-overriding: true  #Bean Overriding
+
 server:
   servlet:
     timeout: 3600
