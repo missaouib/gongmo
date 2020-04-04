@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>A type Fragment</title>
+</head>
+<body>
+
+<div th:fragment="navigator(oneStepUrl, oneStepName, twoStepName)">
+	<section class="content-header">
+		<h1>
+			[[${twoStepName == null ? oneStepName : twoStepName}]]
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="/"><i class="fa fa-dashboard"></i> 홈</a></li>
+			<li><a th:href="${oneStepUrl}">[[${oneStepName}]]</a></li>
+			<th:block th:if="${twoStepName != null}">
+				<li class="active">[[${twoStepName}]]</li>
+			</th:block>
+		</ol>
+	</section>
+</div>
+
+<div th:fragment="attachment">
+	<form name="frmUpload" class="hidden" enctype="multipart/form-data" method="post" action="/attachment/upload">
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" >
+		<input type="file" id="file" name="file" />
+		<input type="file" multiple="multiple" id="files" name="files[]" />
+	</form>
+</div>
+
+<div th:fragment="multipartFile">
+	<form name="multipartFileUpload" class="hidden" enctype="multipart/form-data" method="post" action="/file/upload">
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" >
+		<input type="file" id="multipartFile" name="file" />
+		<input type="file" multiple="multiple" id="multipartFiles" name="files[]" />
+		<input type="hidden" name="identity">
+		<input type="hidden" name="position">
+		<input type="hidden" name="floor">
+	</form>
+</div>
+
+<!-- Admin-console -->
+<div th:fragment="adminPagination(pages)">
+	<ul class="pagination" th:unless="${pages.totalPages eq 0}" th:with="pageStartNum = ${(pages.number/5)*5}, pageEndNum = ${pageStartNum+(5-1)}">
+		<li th:class="${pages.number == 0 ? 'disabled' : ''}">
+			<a th:href="${pages.number == 0 ? '#none' : 'javascript:pagination('+(0)+')'}"
+			   aria-label='Previous'>
+				<span aria-hidden='true'>&#60;&#60;</span>
+			</a>
+		</li>
+		<li th:class="${pages.number == 0 ? 'disabled' : ''}">
+			<a th:href="${pages.number == 0 ? '#none' : 'javascript:pagination('+(pages.number-1)+')'}"
+			   aria-label='Previous'>
+				<span aria-hidden='true'>&#60;</span>
+			</a>
+		</li>
+		<li th:each="no:${#numbers.sequence(pageStartNum, pages.totalPages <= pageEndNum ? pages.totalPages-1 : pageEndNum)}" th:class="${pages.number eq no}?'active':''">
+			<a th:href="'javascript:pagination('+${no}+')'" th:inline="text">
+				[[${no+1}]]
+			</a>
+		</li>
+		<li th:class="${pages.hasNext() and pages.totalPages > (pages.number+1) } ? '' : 'disabled'">
+			<a th:href="${pages.hasNext() and pages.totalPages > (pages.number+1) ? 'javascript:pagination('+(pages.number+1)+')' : '#none'}"
+			   aria-label='Next'>
+				<span aria-hidden='true'>&#62;</span>
+			</a>
+		</li>
+		<li th:class="${pages.hasNext() and pages.totalPages > (pages.number+1) } ? '' : 'disabled'">
+			<a th:href="${pages.hasNext() and pages.totalPages > (pages.number+1) ? 'javascript:pagination('+(pages.totalPages-1)+')' : '#none'}"
+			   aria-label='Next'>
+				<span aria-hidden='true'>&#62;&#62;</span>
+			</a>
+		</li>
+	</ul>
+</div>
+
+</body>
+</html>

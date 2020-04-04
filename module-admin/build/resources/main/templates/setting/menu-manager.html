@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout}">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/modules/jstree/themes/default/style.min.css"
+          th:href="@{/modules/jstree/themes/default/style.min.css}">
+    <link rel="stylesheet" type="text/css" href="/static/css/setting/menu-manager.css"
+          th:href="@{/css/setting/menu-manager.css}">
+</head>
+<body>
+<div layout:fragment="content">
+<!--    <section class="content-header">-->
+<!--        <h1>-->
+<!--            Menu Manager-->
+<!--        </h1>-->
+<!--        <ol class="breadcrumb">-->
+<!--            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>-->
+<!--            <li><a href="#">Setting</a></li>-->
+<!--            <li class="active">Menu Manager</li>-->
+<!--        </ol>-->
+<!--    </section>-->
+    <div th:replace="/fragments/utilFragment::navigator('/setting/menu-manager', '설정', '메뉴관리')"></div>
+    <section class="content">
+        <div class="row">
+            <div class="col-sm-5 col-md-3">
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Menu Tree</h3>
+                    </div>
+                    <div class="box-body ">
+                        <div class="menu-panel">
+                            <ul>
+                                <li data-jstree='{"opened":"true","icon":"jstree-folder"}'
+                                    data-menu_type="AdminConsole">Admin Console Menu
+                                    <ul th:if="${not #lists.isEmpty(acMenus)}">
+                                        <li th:each="menu: ${acMenus}"
+                                            th:attr="data-menu_id=${menu.id}, data-menu_type=${menu.menuType}, data-uri=${menu.url}"
+                                            class="menu"
+                                            data-jstree='{"icon":"jstree-file","opened":"true"}'>
+                                            [[${menu.menuName}]]
+                                            <ul th:if="${not #lists.isEmpty(menu.children)}">
+                                                <li th:each="child: ${menu.children}" th:text="${child.menuName}"
+                                                    data-jstree='{"icon":"jstree-file"}'
+                                                    th:attr="data-menu_id=${child.id}, data-menu_type=${child.menuType}"></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li data-jstree='{"opened":"true","icon":"jstree-folder"}' data-menu_type="FrontEnd">
+                                    Front-End Menu
+                                    <ul th:if="${not #lists.isEmpty(feMenus)}">
+                                        <li th:each="menu: ${feMenus}"
+                                            th:attr="data-menu_id=${menu.id}, data-menu_type=${menu.menuType},data-uri=${menu.url}"
+                                            class="menu"
+                                            data-jstree='{"icon":"jstree-file","opened":"true"}'>
+                                            [[${menu.menuName}]]
+                                            <ul th:if="${not #lists.isEmpty(menu.children)}">
+                                                <li th:each="child: ${menu.children}" th:text="${child.menuName}"
+                                                    class="menu"
+                                                    data-jstree='{"icon":"jstree-file"}'
+                                                    th:attr="data-menu_id=${child.id}, data-menu_type=${child.menuType}"></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-warning btn-block btn-new-menu" disabled>
+                            <b>create..</b></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-7 col-md-9">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title" id="panel-title">Information</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body ">
+                        <!-- form start -->
+                        <form class="form-horizontal menu-detail-panel">
+                            <input type="hidden" id="menu-id">
+                            <input type="hidden" id="parent-id">
+                            <input type="hidden" id="menu-type">
+                            <div class="form-group">
+                                <label for="title" class="col-sm-2 control-label">Title</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="title" placeholder="Title">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="uri" class="col-sm-2 control-label">URI</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="parent-uri">/</span>
+                                        <input type="text" class="form-control" id="uri" placeholder="URI">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group uri-pattern">
+                                <label class="col-sm-2 control-label">URI Pattern</label>
+                                <div class="col-sm-5 col-lg-2 pattern-panel">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="optPattern" id="pattern-single"
+                                                   value="Single" checked="">
+                                            Single(/)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5 col-lg-2 pattern-panel">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="optPattern" id="pattern-all"
+                                                   value="All">
+                                            All(/**)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-10 pattern-message" style="display: none;margin-top:8px">
+                                    하위메뉴가 있으면 URI Pattern은 Single만 가능합니다.
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="icon" class="col-sm-2 control-label">Icon</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="icon" placeholder="fa fa-circle-o">
+                                </div>
+                                <div class="col-sm-1">
+                                    <a class="btn btn-info" target="_blank"
+                                       href="https://adminlte.io/themes/AdminLTE/pages/UI/icons.html"><i
+                                            class="fa fa-fw fa-question"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sortOrder" class="col-sm-2 control-label">Sort Number</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="sortOrder">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Role</label>
+                                <div class="col-md-3">
+                                    <label class="text-center" style="width: 100%">Inactive Roles</label>
+                                    <select multiple="" class="form-control" style="height: 82px;"
+                                            id="exclude-role">
+                                        <option th:value="${r.roleName}" th:each="r: ${roles}">
+                                            [[${r.description}]]
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-1">
+                                    <div style="display:flex;align-items: center;justify-content: center;height: 120px">
+                                        <div class="btn-group-vertical align-middle">
+                                            <button type="button" class="btn btn-info" id="btn-include-role"><i
+                                                    class="fa fa-caret-right"></i></button>
+                                            <button type="button" class="btn btn-danger" id="btn-exclude-role"><i
+                                                    class="fa fa-caret-left"></i></button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="text-center" style="width: 100%">Active Roles</label>
+                                    <select multiple="" class="form-control" style="height: 82px;"
+                                            id="include-role">
+                                        <option th:value="${r.roleName}" th:each="r: ${roles}"
+                                                style="display: none">[[${r.description}]]
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Active/Inactive</label>
+                                <div class="col-sm-5 col-lg-2">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="optActive" id="active"
+                                                   value="Y" checked="">
+                                            Active
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5 col-lg-2">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="optActive" id="inactive"
+                                                   value="N">
+                                            Inactive
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Display</label>
+                                <div class="col-sm-5 col-lg-2">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="optShowHide" id="chkShow"
+                                                   value="Y" checked="">
+                                            Show
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5 col-lg-2">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="optShowHide" id="chkHide"
+                                                   value="N">
+                                            Hide
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="button" class="btn btn-info pull-right btn-save">저장</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+<section layout:fragment="script">
+    <script src="/static/modules/jstree/jstree.min.js" th:src="@{/modules/jstree/jstree.min.js}"></script>
+    <script src="/static/js/setting/menu-manager.js" th:src="@{/js/setting/menu-manager.js}"></script>
+</section>
+</body>
+</html>
