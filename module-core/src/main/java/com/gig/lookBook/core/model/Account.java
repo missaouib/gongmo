@@ -1,9 +1,7 @@
 package com.gig.lookBook.core.model;
 
 import com.gig.lookBook.core.model.types.YNType;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -15,6 +13,8 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Account {
 
     @Id
@@ -22,31 +22,51 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACCOUNT_SEQ")
     private Long id;
 
-    @Column
-    private String username;
-
-    @Column
-    private String password;
-
-    @Column
+    @Column(unique = true)
     private String email;
 
-    @Column
-    private String name;
+    @Column(unique = true)
+    private String username;
 
-    @Column
+    private String password;
+
     private LocalDateTime passwordModifyAt = LocalDateTime.now();
 
-    @Column
     private int passwordFailCnt = 0;
 
-    @Column
     private LocalDateTime passwordFailTime;
 
-    @Column
+    private String name;
+
+    private boolean emailVerified;
+
+    private String emailCheckToken;
+
+    private String bio;
+
+    private String url;
+
+    private String occupation;
+
+    private String location;
+
+    @Lob @Basic(fetch = FetchType.EAGER)
+    private String profileImage;
+
+    private boolean requestFollowByEmail;
+
+    private boolean requestFollowByWeb;
+
+    private boolean resultFollowByEmail;
+
+    private boolean resultFollowByWeb;
+
+    private boolean buyFollowerByEmail;
+
+    private boolean buyFollowerByWeb;
+
     private LocalDateTime lastLoginAt;
 
-    @Column
     private String loginIp;
 
     @Enumerated(EnumType.STRING)
@@ -78,7 +98,6 @@ public class Account {
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    @Column
     private LocalDateTime updatedAt;
 
 }
