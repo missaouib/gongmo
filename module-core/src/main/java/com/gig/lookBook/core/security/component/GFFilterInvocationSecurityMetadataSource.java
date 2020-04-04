@@ -29,7 +29,7 @@ import java.util.Set;
 public class GFFilterInvocationSecurityMetadataSource implements FilterInvocationSecurityMetadataSource, InitializingBean {
 
     @Autowired
-    UrlCache urlCache;
+    private UrlCache urlCache;
 
     @Autowired
     @Qualifier("springSecurityFilterChain")

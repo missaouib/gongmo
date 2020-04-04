@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 public class UrlCache extends LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> {
 
     @Autowired
-    MenuRepository menuRepository;
+    private MenuRepository menuRepository;
 
 //    /**
 //     * URL에 접근 가능한 역할

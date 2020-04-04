@@ -1,5 +1,8 @@
 package com.gig.lookBook.core.exception;
 
+import lombok.extern.java.Log;
+
+@Log
 public class NotFoundException extends Exception {
     public static final int USER_NOT_FOUND = 100;
     public static final int USER_GROUP_NOT_FOUND = 200;
@@ -17,6 +20,7 @@ public class NotFoundException extends Exception {
 
     public NotFoundException(String message, int code) {
         super(message);
+        log.info("message : " + message);
         this.code = code;
     }
 
