@@ -4,8 +4,8 @@ import com.gig.lookBook.core.model.Privilege;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * @author prographer
- * @date: 2019-04-09
+ * @author Jake
+ * @date: 20/04/04
  */
 public interface PrivilegeRepository extends JpaRepository<Privilege, String> {
 }
