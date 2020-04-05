@@ -10,15 +10,30 @@
 <body>
 <div class="index-page" layout:fragment="content">
     <section class="content-header">
-        <h1>
-            Dashboard
-        </h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <h1>Lorem</h1>
+                </div>
+                <div class="col-4">
+                    <h1>Ipsum</h1>
+                </div>
+                <div class="col-4">
+                    <h1 data-toggle="tooltip" data-placement="bottom" title="Tooltip">Dolor</h1>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="content">
     </section>
 </div>
 <section layout:fragment="script">
+    <script>
+        $( function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        } );
+    </script>
 </section>
 </body>
 </html>
