@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="gnb" th:remove="tag">
+    <header class="header header_pc on" th:with="uri = ${#httpServletRequest.requestURI}">
+        <div>
+
+<!--            <th:block th:if="${accountDto eq null} or (${accountDto ne null and accountDto.roles[0].roleName != 'ROLE_PARTNER'})">-->
+<!--                <h1 class="logo"><a th:href="@{|/|}">Look Book</a></h1>-->
+<!--            </th:block>-->
+
+            <!--일반, 사업자 회원 Menu -->
+            <th:block th:unless="${accountDto != null && accountDto.roles[0].roleName == 'ROLE_PARTNER'}">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed"
+                                    data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                                    aria-expanded="false">
+                                <span class="sr-only"></span> <span class="icon-bar"></span> <span
+                                    class="icon-bar"></span> <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" th:href="@{/}" style="color: #ffffff;">LookBook</a>
+                        </div>
+                        <div class="collapse navbar-collapse"
+                             id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li><a th:href="@{/map}">Shop<span class="sr-only"></span></a></li>
+                                <li><a th:href="@{/storeChart}">Style</a></li>
+                                <li><a th:href="@{/reviewChart}">Partner</a></li>
+                                <li class="dropdown"><a href="#"
+                                                        class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                                        aria-haspopup="true" aria-expanded="false">마케팅<span
+                                        class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">고객관리</a></li>
+                                        <li><a href="#">데이터분석</a></li>
+                                        <li><a href="#">쿠폰발행</a></li>
+                                    </ul></li>
+                                <li><a th:href="@{/qnaBoards/list}">Q & A</a></li>
+                            </ul>
+                            <form class="navbar-form navbar-left">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="내용을 입력하세요.">
+                                    <button type="submit" class="btn btn-default">검색</button>
+                                </div>
+                            </form>
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+                                    <a	th:unless="${session.memberVo}"
+                                          href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                          role="button" aria-haspopup="true" aria-expanded="false">접속하기<span
+                                            class="caret"></span></a>
+                                    <a	th:if="${session.memberVo}"
+                                          href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                          role="button" aria-haspopup="true" aria-expanded="false">[[${session.memberVo.uname}]]<span
+                                            class="caret"></span></a>
+
+                                    <ul class="dropdown-menu">
+                                        <li th:if="${session.memberVo}"><a th:href="@{/mypage}">마이페이지</a></li>
+                                        <li th:if="${session.memberVo}">
+                                            <a th:href="@{/join/logout}">로그아웃</a>
+                                        </li>
+                                        <li th:unless="${session.memberVo}"><a th:href="@{/join/login}">로그인</a></li>
+                                        <li th:unless="${session.memberVo}"><a th:href="@{/join/memberJoin}">회원가입</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </th:block>
+            <!-- /.nav -->
+
+            <ul class="util">
+                <!-- 비로그인 시 -->
+                <div sec:authorize="!isAuthenticated()" th:remove="tag">
+                    <li class="logoffDivLogin"><a th:href="@{|/secure/login|}">로그인</a></li>
+                    <li class="logoffDivSignup"><a th:href="@{|/secure/signup-type|}">회원가입</a></li>
+                </div>
+
+                <!-- 로그인 시 -->
+                <div sec:authorize="isAuthenticated()" th:remove="tag">
+                    <!-- 일반 회원 -->
+                    <th:block th:unless="${accountDto.roles[0].roleName == 'ROLE_PARTNER'}">
+                        <li><a th:href="@{|/mypage|}">마이페이지</a></li>
+                    </th:block>
+
+                    <li><a th:href="@{|/secure/logout|}">로그아웃</a></li>
+                </div>
+
+                <th:block th:if="${accountDto == null || accountDto.roles[0].roleName != 'ROLE_PARTNER'}">
+                    <li><a th:href="@{/customer/notice}">고객센터</a></li>
+                </th:block>
+            </ul>
+        </div>
+    </header>
+    <!-- /.header_pc -->
+
+    <header class="header header_m on">
+
+    </header>
+    <!-- /.header_m -->
+    <!-- /.header -->
+</div>
+
+<div th:fragment="footer" th:remove="tag">
+    <footer class="footer">
+        <div class="inner">
+            <div class="f_btm clear">
+                <ul class="f_logo">
+<!--                    <li><img src="/images/f_logo01.jpg"></li>-->
+<!--                    <li><img src="/images/f_logo02.jpg"></li>-->
+                </ul>
+                <p class="f_info">(주) Gig Company<span>대표번호 1588-1992</span><span class="copy">Copyright ⓒ 2020 Gig Company. All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+</div>
+</body>
+</html>

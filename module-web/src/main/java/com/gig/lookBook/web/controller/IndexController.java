@@ -20,9 +20,7 @@ public class IndexController {
     public ModelAndView index(@AuthenticationPrincipal LoginUser loginUser, HttpServletRequest request) throws NotFoundException, ParseException {
 
         ModelAndView mav = new ModelAndView("index");
-
         if (loginUser != null) mav.addObject("loginUser", new AccountDto(loginUser.getLoginAccount()));
-        
         return mav;
     }
     
