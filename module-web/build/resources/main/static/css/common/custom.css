@@ -1,1 +1,8 @@
 /* 헤더 */
+.content-header .ui-menu {
+    padding : 5px;
+}
+
+.content-header .ui-menu li {
+    margin-right: 10px;
+}
