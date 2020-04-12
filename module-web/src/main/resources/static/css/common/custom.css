@@ -6,3 +6,8 @@
 .content-header .ui-menu li {
     margin-right: 10px;
 }
+
+.content-header .ui-menu li button{
+    background-color: #ffffff;
+    margin-right: 10px;
+}
