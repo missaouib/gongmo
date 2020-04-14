@@ -9,33 +9,9 @@
 </head>
 <body>
 <div class="index-page" layout:fragment="content">
-    <section class="content-header">
-        <div class="container-fluid" style="background-color: black; color: white">
-            <div class="row col-md-12">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <ul class="list-inline ui-menu">
-                        <li class="list-inline-item ui-menu-item" style="margin-right: 20px;">
-                            <h4>LOOKBOOK</h4>
-                        </li>
-                        <li class="list-inline-item ui-menu-item">
-                            <i class="fa fa-tag"></i> Explore
-                        </li>
-                        <li class="list-inline-item ui-menu-item">
-                            <i class="fa fa-tag"></i> Feed
-                        </li>
-                        <li class="list-inline-item ui-menu-item">
-                            <i class="fa fa-tag"></i> Blog
-                        </li>
-
-                        <li class="list-inline-item ui-menu-item pull-right">
-                            <button class="btn btn-default">Join</button>
-                            <button class="btn btn-default">Login</button>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-3"></div>
-            </div>
+    <section class="content">
+        <div>
+            <img th:src="@{/images/banner01.jpg}" class="img-fluid" style="width: 100%;">
         </div>
 
         <h1 class="display-1">Hello</h1>
@@ -52,11 +28,6 @@
             container container container container containercontainer containercontainercontainer
             containercontainercontainercontainercontainercontainercontainercontainercontainer
         </div>
-
-
-    </section>
-
-    <section class="content">
     </section>
 </div>
 <section layout:fragment="script">
