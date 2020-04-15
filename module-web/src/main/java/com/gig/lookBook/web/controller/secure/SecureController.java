@@ -26,18 +26,17 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/secure")
+@RequiredArgsConstructor
 public class SecureController {
 
-//    @Autowired
-//    private SignUpFormValidator signUpFormValidator;
+    private final SignUpFormValidator signUpFormValidator;
 
-    @Autowired
-    private AccountService accountService;
+    private final AccountService accountService;
 
-//    @InitBinder("accountDto")
-//    public void initBinder(WebDataBinder webDataBinder) {
-//        webDataBinder.addValidators(signUpFormValidator);
-//    }
+    @InitBinder("accountDto")
+    public void initBinder(WebDataBinder webDataBinder) {
+        webDataBinder.addValidators(signUpFormValidator);
+    }
 
     @GetMapping("sign-up")
     public String index(Model model){

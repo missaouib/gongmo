@@ -1,5 +1,8 @@
 package com.gig.lookBook.web.config;
 
+import com.gig.lookBook.core.repository.AccountRepository;
+import com.gig.lookBook.core.validation.SignUpFormValidator;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -16,9 +19,17 @@ import java.util.List;
 
 @Configuration
 @Slf4j
+@RequiredArgsConstructor
 public class WebConfiguration implements ApplicationContextAware, WebMvcConfigurer {
 
     private ApplicationContext applicationContext;
+
+    private final AccountRepository accountRepository;
+
+    @Bean
+    SignUpFormValidator signUpFormValidator() {
+        return new SignUpFormValidator(accountRepository);
+    }
 
     @Bean
     public FrontInterceptor frontInterceptor() {

@@ -6,6 +6,7 @@ import com.gig.lookBook.core.exception.UserNotFoundException;
 import com.gig.lookBook.core.model.Account;
 import com.gig.lookBook.core.repository.AccountRepository;
 import javassist.NotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,10 +15,10 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class AccountService {
 
-    @Autowired
-    private AccountRepository accountRepository;
+    private final AccountRepository accountRepository;
 
     public Account findByUsername(String username) throws NotFoundException {
         Optional<Account> findUser = accountRepository.findByUsernameIgnoreCase(username);
