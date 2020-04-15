@@ -7,35 +7,51 @@
 </head>
 <body>
 <div th:fragment="gnb" th:remove="tag">
-    <section class="content-header">
-        <div class="container-fluid" style="background-color: black; color: white">
-            <div class="row col-md-12">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <ul class="list-inline ui-menu" style="padding:10px;">
-                        <li class="list-inline-item ui-menu-item" style="margin-right: 50px;">
-                            <h5>LOOKBOOK</h5>
-                        </li>
-                        <li class="list-inline-item ui-menu-item menu-label">
-                            Explore
-                        </li>
-                        <li class="list-inline-item ui-menu-item menu-label">
-                            Feed
-                        </li>
-                        <li class="list-inline-item ui-menu-item menu-label">
-                            Blog
-                        </li>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="col-md-2"></div>
+        <div class="navbar col-md-8">
+            <a class="navbar-brand" href="/">LookBook</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                        <li class="list-inline-item ui-menu-item pull-right">
-                            <span style="padding-right: 30px;">Log in</span>
-                            <button class="btn btn-sm btn-default">Join</button>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-3"></div>
-            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="padding-left: 50px;">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active right-padding">
+                        <a class="nav-link" href="#">Explore <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item right-padding">
+                        <a class="nav-link" href="#">Feed</a>
+                    </li>
+                    <li class="nav-item dropdown right-padding">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Shop
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Shirts</a>
+                            <a class="dropdown-item" href="#">Pents</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <ul class="navbar-nav mr-auto"  style="padding-left: 100px; margin-right: 0px;">
+                    <li class="nav-item right-padding">
+                        <a class="nav-link" href="/secure/login">Log in <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/secure/sign-up">Join</a>
+                    </li>
+                </ul>
         </div>
-    </section>
+        </div>
+        <div class="col-md-2"></div>
+
+    </nav>
 </div>
 
 <div th:fragment="footer" th:remove="tag">

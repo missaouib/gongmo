@@ -5,7 +5,11 @@ import com.gig.lookBook.core.model.types.YNType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 
 @Getter
@@ -14,11 +18,25 @@ import java.time.LocalDateTime;
 public class AccountDto {
 
     private Long id;
+
+    @NotBlank
+    @Length(min = 3, max = 20)
+    @Pattern(regexp = "^[ㄱ-ㅎ가-힣a-z0-9_-]{3,20}$")
     private String username;
+
     private String name;
+
+    @NotBlank
+    @Length(min = 8, max = 50)
     private String password;
+
     private String phone;
+
+    @Email
+    @NotBlank
     private String email;
+
+
     private String loginIp;
     private YNType activeYn = YNType.Y;
     private YNType dormancy = YNType.N;

@@ -1,5 +1,8 @@
 package com.gig.lookBook.core.service;
 
+import com.gig.lookBook.core.dto.AccountDto;
+import com.gig.lookBook.core.exception.AlreadyEntity;
+import com.gig.lookBook.core.exception.UserNotFoundException;
 import com.gig.lookBook.core.model.Account;
 import com.gig.lookBook.core.repository.AccountRepository;
 import javassist.NotFoundException;
@@ -22,6 +25,26 @@ public class AccountService {
 //            throw new UserNotFoundException(username, UserNotFoundException.USER_NOT_FOUND);
 //        }
         return findUser.get();
+    }
+
+    /**
+     * 사용자 추가
+     *
+     * @param dto
+     * @throws AlreadyEntity
+     */
+    public Account createUser(AccountDto dto) throws UserNotFoundException, NotFoundException {
+        Account account = findByUsername(dto.getUsername());
+        account.setName(dto.getName());
+        account.setEmail(dto.getEmail());
+
+        if (dto.getPassword() != null) {
+            account.setPassword(dto.getPassword());
+        }
+
+        accountRepository.save(account);
+
+        return account;
     }
 
     /**

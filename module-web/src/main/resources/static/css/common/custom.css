@@ -1,22 +1,7 @@
-/* 헤더 */
-.content-header .ui-menu {
-    padding : 5px;
+.banner-container {
+    background-image: url("/static/images/banner.jpg");
 }
 
-.content-header .ui-menu li {
-    margin-right: 10px;
-}
-
-.content-header .ui-menu li button{
-    background-color: #ffffff;
-    margin-right: 10px;
-}
-
-.menu-label {
+.right-padding {
     padding-right: 20px;
-    color: #eeeeee;
-}
-
-.logo-label {
-    padding-right: 50px;
 }

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout}">
+<head>
+
+</head>
+<body>
+<div class="index-page" layout:fragment="content">
+    <section class="content">
+        <div>
+            <img th:src="@{/images/banner01.jpg}" class="img-fluid" style="width: 100%;">
+        </div>
+
+        <h1 class="display-1">Hello</h1>
+        <div class="alert alert-warning alert-dismissable fade show" role="alert">
+            <strong>Holy guacamole</strong> You should check in on some of those files elow.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 data-toggle="tooltip" data-placement="bottom" title="Tooltip">Dolor</h4>
+        </div>
+
+        <div class="container">
+            container 연습
+            container container container container containercontainer containercontainercontainer
+            containercontainercontainercontainercontainercontainercontainercontainercontainer
+        </div>
+
+        <div class="container">
+            <h1 class="display-1 text-center">
+                rows & columns
+            </h1>
+            <br />
+            <div class="row">
+                <div>d</div>
+            </div>
+        </div>
+    </section>
+</div>
+<section layout:fragment="script">
+    <script>
+        $( function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        } );
+    </script>
+</section>
+</body>
+</html>

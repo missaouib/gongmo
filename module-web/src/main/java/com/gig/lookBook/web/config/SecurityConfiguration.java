@@ -37,7 +37,7 @@ public class SecurityConfiguration extends FrontAbstractSecurityConfiguration {
     @Override
     public void configure(WebSecurity webSecurity) {
         super.configure(webSecurity);
-        webSecurity.ignoring().antMatchers("/modules/**", "/js/**", "/css/**", "/static/img/**", "/fonts/**");
+        webSecurity.ignoring().antMatchers("/node_modules/**", "/modules/**", "/js/**", "/css/**", "/static/img/**", "/fonts/**");
     }
 
     @Override
