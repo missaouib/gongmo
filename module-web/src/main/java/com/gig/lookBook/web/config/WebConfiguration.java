@@ -41,6 +41,7 @@ public class WebConfiguration implements ApplicationContextAware, WebMvcConfigur
         return new FrontInterceptor();
     }
 
+
     @Bean
     public DeviceResolverHandlerInterceptor deviceResolverHandlerInterceptor() {
         return new DeviceResolverHandlerInterceptor();
