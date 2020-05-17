@@ -37,7 +37,6 @@ public class WebConfiguration implements ApplicationContextAware, WebMvcConfigur
         CommonInterceptor commonInterceptor = new CommonInterceptor();
         commonInterceptor.setMenuType(MenuType.AdminConsole);
         */
-
         return new FrontInterceptor();
     }
 

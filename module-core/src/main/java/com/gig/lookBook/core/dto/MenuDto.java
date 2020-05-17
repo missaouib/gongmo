@@ -38,6 +38,7 @@ public class MenuDto {
     @Deprecated
     private MenuDto parent;
 
+
     public MenuDto(Menu menu) {
         this.id = menu.getId();
         this.menuName = menu.getMenuName();
