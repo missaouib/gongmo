@@ -100,5 +100,4 @@ public class Account {
 
     private LocalDateTime updatedAt;
 
-
 }
