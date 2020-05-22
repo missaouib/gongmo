@@ -99,5 +99,4 @@ public class Account {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
-
 }
