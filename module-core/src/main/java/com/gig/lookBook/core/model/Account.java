@@ -98,5 +98,6 @@ public class Account {
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
+
     private LocalDateTime updatedAt;
 }
