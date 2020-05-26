@@ -77,7 +77,6 @@ public class Account {
     @Column(length = 1)
     private YNType dormancyYn = YNType.N;
 
-
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "ACCOUNT_ROLE",
