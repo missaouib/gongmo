@@ -53,18 +53,6 @@ public class Account {
     @Lob @Basic(fetch = FetchType.EAGER)
     private String profileImage;
 
-    private boolean requestFollowByEmail;
-
-    private boolean requestFollowByWeb;
-
-    private boolean resultFollowByEmail;
-
-    private boolean resultFollowByWeb;
-
-    private boolean buyFollowerByEmail;
-
-    private boolean buyFollowerByWeb;
-
     private LocalDateTime lastLoginAt;
 
     private String loginIp;
