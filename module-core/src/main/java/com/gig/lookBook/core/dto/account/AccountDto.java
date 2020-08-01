@@ -1,4 +1,4 @@
-package com.gig.lookBook.core.dto;
+package com.gig.lookBook.core.dto.account;
 
 import com.gig.lookBook.core.model.Account;
 import com.gig.lookBook.core.model.types.YNType;

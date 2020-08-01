@@ -1,5 +1,6 @@
-package com.gig.lookBook.core.dto;
+package com.gig.lookBook.core.dto.menu;
 
+import com.gig.lookBook.core.dto.role.RoleDto;
 import com.gig.lookBook.core.model.Menu;
 import com.gig.lookBook.core.model.Role;
 import com.gig.lookBook.core.model.types.AntMatcherType;

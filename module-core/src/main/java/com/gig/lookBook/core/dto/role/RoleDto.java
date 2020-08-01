@@ -1,5 +1,6 @@
-package com.gig.lookBook.core.dto;
+package com.gig.lookBook.core.dto.role;
 
+import com.gig.lookBook.core.dto.privilege.PrivilegeDto;
 import com.gig.lookBook.core.model.Role;
 import com.gig.lookBook.core.model.types.YNType;
 import lombok.Getter;

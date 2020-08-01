@@ -1,13 +1,12 @@
 package com.gig.lookBook.core.service;
 
-import com.gig.lookBook.core.dto.AccountDto;
+import com.gig.lookBook.core.dto.account.AccountDto;
 import com.gig.lookBook.core.exception.AlreadyEntity;
 import com.gig.lookBook.core.exception.UserNotFoundException;
 import com.gig.lookBook.core.model.Account;
 import com.gig.lookBook.core.repository.AccountRepository;
 import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

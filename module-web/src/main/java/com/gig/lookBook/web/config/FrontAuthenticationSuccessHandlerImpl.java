@@ -1,7 +1,7 @@
 package com.gig.lookBook.web.config;
 
-import com.gig.lookBook.core.dto.AccountDto;
-import com.gig.lookBook.core.dto.ApiResultDto;
+import com.gig.lookBook.core.dto.account.AccountDto;
+import com.gig.lookBook.core.dto.common.ApiResultDto;
 import com.gig.lookBook.core.security.LoginUser;
 import com.gig.lookBook.core.service.AccountService;
 import com.gig.lookBook.core.util.CommonUtils;

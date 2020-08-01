@@ -1,6 +1,6 @@
 package com.gig.lookBook.web.config;
 
-import com.gig.lookBook.core.dto.AccountDto;
+import com.gig.lookBook.core.dto.account.AccountDto;
 import com.gig.lookBook.core.model.Account;
 import com.gig.lookBook.core.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;

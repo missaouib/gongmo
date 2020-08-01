@@ -1,4 +1,4 @@
-package com.gig.lookBook.core.dto;
+package com.gig.lookBook.core.dto.privilege;
 
 import com.gig.lookBook.core.model.Privilege;
 import lombok.Getter;

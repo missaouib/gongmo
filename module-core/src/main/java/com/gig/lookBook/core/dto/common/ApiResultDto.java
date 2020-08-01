@@ -1,4 +1,4 @@
-package com.gig.lookBook.core.dto;
+package com.gig.lookBook.core.dto.common;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

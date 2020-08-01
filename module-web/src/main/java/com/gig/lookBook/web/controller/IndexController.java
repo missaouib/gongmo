@@ -1,6 +1,6 @@
 package com.gig.lookBook.web.controller;
 
-import com.gig.lookBook.core.dto.AccountDto;
+import com.gig.lookBook.core.dto.account.AccountDto;
 import com.gig.lookBook.core.exception.NotFoundException;
 import com.gig.lookBook.core.security.LoginUser;
 import org.json.simple.parser.ParseException;
