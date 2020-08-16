@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: gig
+    active: web
   jpa:
     properties:
       jadira.usertype.autoRegisterUserTypes: true
@@ -28,3 +28,4 @@ server:
     remote-ip-header: x-forwarded-for
     protocol-header: x-forwarded-proto
   use-forward-headers: true
+  port: 8088
