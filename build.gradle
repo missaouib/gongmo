@@ -113,7 +113,7 @@ project(":module-core") {
     jar.enabled = true
 }
 
-project(':module-web') {
+project(':module-api') {
     apply plugin: 'war'
     version = '0.1.0'
 
