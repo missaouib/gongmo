@@ -4,6 +4,7 @@
 /module-web/build/
 /module-admin/build/
 
+.yml
 
 ### IntelliJ IDEA ###
 .idea
