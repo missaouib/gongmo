@@ -167,6 +167,7 @@ public class MenuService {
         menu.setLastModifier(securityService.getLoginUser());
         menu.setUrl(dto.getUrl());
         menu.setMenuType(dto.getMenuType());
+        menu.setSortOrder(dto.getSortOrder());
 
         if (menu.getChildren().size() > 0) {
             /*

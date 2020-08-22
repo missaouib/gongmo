@@ -87,4 +87,17 @@ public class Account {
 
     private LocalDateTime updatedAt;
 
+    @PrePersist
+    public void beforePersist() {
+        LocalDateTime dateTime = LocalDateTime.now();
+        this.createdAt = dateTime;
+        this.updatedAt = dateTime;
+        this.passwordModifyAt = dateTime;
+    }
+
+    @PreUpdate
+    public void beforeUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
+
 }

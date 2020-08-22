@@ -1,5 +1,6 @@
 package com.gig.lookBook.core.security;
 
+import com.gig.lookBook.core.exception.UserNotFoundException;
 import com.gig.lookBook.core.model.Account;
 import com.gig.lookBook.core.model.Role;
 import com.gig.lookBook.core.model.types.YNType;
@@ -39,7 +40,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         Account account;
         try {
             account = accountService.findByUsername(username);
-        } catch (NotFoundException e) {
+        } catch (UserNotFoundException e) {
             String msg = "User Not found: " + username;
             log.error(msg);
             throw new UsernameNotFoundException(msg);
