@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>Gig - LookBook</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'/>
+    <meta name="robots" content="noindex, nofollow" />
+
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/node_modules/@yaireo/tagify/dist/tagify.css">
+    <link rel="stylesheet" href="/node_modules/summernote/dist/summernote-bs4.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/common/custom.css" th:href="@{/css/common/custom.css}">
+    <link rel="stylesheet" type="text/css" href="/static/css/jquery-ui.css" th:href="@{/css/jquery-ui.css}">
+</head>
+<body class="skin-yellow sidebar-mini">
+
+<div class="wrapper">
+
+    <div th:replace="fragments/layout/layoutFragment :: gnb"></div>
+    <div layout:fragment="content" th:remove="tag"></div>
+
+    <!--    <div th:replace="fragments/layout/layoutFragment :: footer"></div>-->
+
+
+    <div class="pop_wrap pop_alert" id="commonModal" style="display: none;">
+        <div class="pop_container">
+            <div class="pop_hd">
+                <h1 class="pop_title commonModalTitle">알림</h1>
+                <button type="button" class="pop_close"><i class="xi-close"></i></button>
+            </div>
+            <div class="pop_cont">
+                <p class="commonModalContent"></p>
+            </div>
+            <!-- /.pop_cont -->
+            <div class="btn_wrap btn_mr">
+                <button type="button" class="btn btn_st1 commonModalClose">취소</button>
+                <button type="button" class="btn btn_st2 commonModalConfirm">확인</button>
+                <button type="button" class="btn btn_st2 commonModalConfirm">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <div th:with="isLogin = ${#authorization.getAuthentication() != null and #authorization.expression('isAuthenticated()')}">
+        <input type="hidden" id="isLogin" th:value="${isLogin}"/>
+    </div>
+</div>
+
+<!-- js -->
+<script src="/static/dist/app.bundle.js"></script>
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="/node_modules/jdenticon/dist/jdenticon.min.js"></script>
+<!--<script src="/static/js/jquery.form.min.js" th:src="@{/js/jquery.form.min.js}"></script>-->
+<!--<script src="/static/js/jquery.easing.1.3.js" th:src="@{/js/jquery.easing.1.3.js}"></script>-->
+<!--<script src="/static/js/jquery-ui.js" th:src="@{/js/jquery-ui.js}"></script>-->
+<!--<script src="/static/js/jquery.bpopup.min.js" th:src="@{/js/jquery.bpopup.min.js}"></script>-->
+<!--<script src="/static/js/spin.js" th:src="@{/js/spin.js}"></script>-->
+<!--<script src="/static/js/modal.js" th:src="@{/js/modal.js}"></script>-->
+<!--<script src="/static/js/lightslider.js" th:src="@{/js/lightslider.js}"></script>-->
+
+<!-- Static Page Effect -->
+<!--<script src="/static/js/TweenMax.min.js" th:src="@{/js/TweenMax.min.js}"></script>-->
+<!--<script src="/static/js/ScrollToPlugin.min.js" th:src="@{/js/ScrollToPlugin.min.js}"></script>-->
+<!--<script src="/static/js/skrollr.min.js" th:src="@{/js/skrollr.min.js}"></script>-->
+<!--<script src="/static/js/jquery.waypoints.min.js" th:src="@{/js/jquery.waypoints.min.js}"></script>-->
+<!--<script src="/static/js/SplitTextmin.js" th:src="@{/js/SplitTextmin.js}"></script>-->
+
+<!-- Library -->
+
+<!-- Common -->
+<script src="/static/js/common/common.js" th:src="@{/js/common/common.js}"></script>
+<script src="/static/js/common/util.js" th:src="@{/js/common/util.js}"></script>
+<section layout:fragment="script">
+</section>
+</body>
+</html>

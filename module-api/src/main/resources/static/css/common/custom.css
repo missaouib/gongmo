@@ -1,0 +1,7 @@
+.banner-container {
+    background-image: url("/static/images/banner.jpg");
+}
+
+.right-padding {
+    padding-right: 20px;
+}

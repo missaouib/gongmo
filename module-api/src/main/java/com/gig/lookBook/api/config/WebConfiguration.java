@@ -2,6 +2,7 @@ package com.gig.lookBook.api.config;
 
 import com.gig.lookBook.core.model.types.MenuType;
 import com.gig.lookBook.core.security.component.CommonInterceptor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -19,6 +20,7 @@ import java.util.Locale;
 
 @Configuration
 @Slf4j
+@RequiredArgsConstructor
 public class WebConfiguration implements ApplicationContextAware, WebMvcConfigurer {
 
     private ApplicationContext applicationContext;

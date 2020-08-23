@@ -71,7 +71,7 @@
                                 </tr>
                                 <tr th:if="${not #lists.isEmpty(pages.content)}" th:each="item, status : ${pages.content}">
                                     <td th:text="${pages.totalElements - (status.count + (pages.number * pages.size)) + 1}">1</td>
-                                    <td><a th:href="|/account/${item.accountId}|">[[${item.customerNo}]]</a></td>
+                                    <td><a th:href="|/account/${item.accountId}|">[[${item.accountId}]]</a></td>
                                     <td>[[${item.username}]]</td>
                                     <td>[[${item.name}]]</td>
                                     <td>[[${item.email}]]</td>
