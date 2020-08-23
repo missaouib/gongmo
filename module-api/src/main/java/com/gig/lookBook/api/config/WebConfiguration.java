@@ -1,7 +1,9 @@
 package com.gig.lookBook.api.config;
 
 import com.gig.lookBook.core.model.types.MenuType;
+import com.gig.lookBook.core.repository.AccountRepository;
 import com.gig.lookBook.core.security.component.CommonInterceptor;
+import com.gig.lookBook.core.validation.AccountReqValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
@@ -25,6 +27,12 @@ public class WebConfiguration implements ApplicationContextAware, WebMvcConfigur
 
     private ApplicationContext applicationContext;
 
+    private final AccountRepository accountRepository;
+
+    @Bean
+    public AccountReqValidator accountReqValidator() {
+        return new AccountReqValidator(accountRepository);
+    }
 
     @Bean
     public CommonInterceptor commonInterceptor() {

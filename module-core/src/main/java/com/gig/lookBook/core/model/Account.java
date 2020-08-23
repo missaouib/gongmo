@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -23,10 +24,16 @@ public class Account {
     private Long id;
 
     @Column(unique = true)
-    private String email;
+    private String username;
 
     @Column(unique = true)
-    private String username;
+    private String nickname;
+
+
+    private String name;
+
+    @Column(unique = true)
+    private String email;
 
     private String password;
 
@@ -36,11 +43,11 @@ public class Account {
 
     private LocalDateTime passwordFailTime;
 
-    private String name;
-
     private boolean emailVerified;
 
     private String emailCheckToken;
+
+    private LocalDateTime emailCheckTokenGeneratedAt;
 
     private String bio;
 
@@ -100,4 +107,8 @@ public class Account {
         this.updatedAt = LocalDateTime.now();
     }
 
+    public void generateEmailCheckToken() {
+        this.emailCheckToken = UUID.randomUUID().toString();
+        this.emailCheckTokenGeneratedAt = LocalDateTime.now();
+    }
 }

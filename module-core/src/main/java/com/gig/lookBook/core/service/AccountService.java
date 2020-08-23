@@ -8,18 +8,17 @@ import com.gig.lookBook.core.exception.AlreadyEntity;
 import com.gig.lookBook.core.exception.UserNotFoundException;
 import com.gig.lookBook.core.model.Account;
 import com.gig.lookBook.core.model.Role;
-import com.gig.lookBook.core.model.types.YNType;
 import com.gig.lookBook.core.repository.AccountRepository;
 import com.gig.lookBook.core.repository.RoleRepository;
 import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
-
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.DigestUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,8 +27,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.validation.Valid;
 import java.time.LocalDateTime;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -41,6 +40,8 @@ public class AccountService {
 
     private final AccountRepository accountRepository;
     private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final ModelMapper modelMapper;
 
     @PersistenceContext
     private EntityManager em;
@@ -181,5 +182,18 @@ public class AccountService {
         account.getRoles().add(role);
         accountRepository.save(account);
         return account.getId();
+    }
+
+    public Account processNewAccountByFront(AccountReqDto accountReqDto) {
+        Account newAccount = createOrUpdate(accountReqDto);
+//        sendSignUpConfirmEmail(newAccount);
+        return newAccount;
+    }
+
+    private Account createOrUpdate(@Valid AccountReqDto accountReqDto) {
+        accountReqDto.setPassword(passwordEncoder.encode(accountReqDto.getPassword()));
+        Account account = modelMapper.map(accountReqDto, Account.class);
+        account.generateEmailCheckToken();
+        return accountRepository.save(account);
     }
 }
