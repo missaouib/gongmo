@@ -34,8 +34,6 @@ public class AccountReqDto {
 
     private String phone;
 
-    @Email
-    @NotBlank
     private String email;
 
     private YNType activeYn;

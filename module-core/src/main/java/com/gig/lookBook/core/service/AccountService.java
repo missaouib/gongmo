@@ -5,12 +5,12 @@ import com.gig.lookBook.core.dto.account.AccountLightDto;
 import com.gig.lookBook.core.dto.account.AccountReqDto;
 import com.gig.lookBook.core.dto.account.AccountSearchDto;
 import com.gig.lookBook.core.exception.AlreadyEntity;
+import com.gig.lookBook.core.exception.NotFoundException;
 import com.gig.lookBook.core.exception.UserNotFoundException;
 import com.gig.lookBook.core.model.Account;
 import com.gig.lookBook.core.model.Role;
 import com.gig.lookBook.core.repository.AccountRepository;
 import com.gig.lookBook.core.repository.RoleRepository;
-import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -185,15 +185,19 @@ public class AccountService {
     }
 
     public Account processNewAccountByFront(AccountReqDto accountReqDto) {
-        Account newAccount = createOrUpdate(accountReqDto);
+        Account newAccount = signUpByFront(accountReqDto);
 //        sendSignUpConfirmEmail(newAccount);
         return newAccount;
     }
 
-    private Account createOrUpdate(@Valid AccountReqDto accountReqDto) {
+    private Account signUpByFront(@Valid AccountReqDto accountReqDto) {
         accountReqDto.setPassword(passwordEncoder.encode(accountReqDto.getPassword()));
-        Account account = modelMapper.map(accountReqDto, Account.class);
+        Account account = new Account();
+        account.setUsername(accountReqDto.getUsername());
+        account.setPassword(accountReqDto.getPassword());
+        account.setEmail(accountReqDto.getUsername());
         account.generateEmailCheckToken();
+
         return accountRepository.save(account);
     }
 }

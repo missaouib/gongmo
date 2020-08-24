@@ -1,6 +1,7 @@
 package com.gig.lookBook.api.controller.secure;
 
 import com.gig.lookBook.core.dto.account.AccountReqDto;
+import com.gig.lookBook.core.exception.NotFoundException;
 import com.gig.lookBook.core.model.Account;
 import com.gig.lookBook.core.service.AccountService;
 import com.gig.lookBook.core.validation.AccountReqValidator;
@@ -42,5 +43,10 @@ public class SecureController {
         }
         accountService.processNewAccountByFront(accountReqDto);
         return "redirect:/";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 }
