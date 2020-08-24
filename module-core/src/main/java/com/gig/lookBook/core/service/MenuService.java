@@ -1,7 +1,7 @@
 package com.gig.lookBook.core.service;
 
-import com.gig.lookBook.core.dto.MenuDto;
-import com.gig.lookBook.core.dto.RoleDto;
+import com.gig.lookBook.core.dto.menu.MenuDto;
+import com.gig.lookBook.core.dto.role.RoleDto;
 import com.gig.lookBook.core.exception.InvalidRequiredParameter;
 import com.gig.lookBook.core.exception.NotFoundException;
 import com.gig.lookBook.core.model.Menu;
@@ -167,6 +167,7 @@ public class MenuService {
         menu.setLastModifier(securityService.getLoginUser());
         menu.setUrl(dto.getUrl());
         menu.setMenuType(dto.getMenuType());
+        menu.setSortOrder(dto.getSortOrder());
 
         if (menu.getChildren().size() > 0) {
             /*

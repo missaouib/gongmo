@@ -12,6 +12,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/module-admin" />
+            <option value="$PROJECT_DIR$/module-api" />
             <option value="$PROJECT_DIR$/module-core" />
             <option value="$PROJECT_DIR$/module-web" />
           </set>

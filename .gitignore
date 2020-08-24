@@ -3,5 +3,20 @@
 /module-core/build/
 /module-web/build/
 /module-admin/build/
+
+.yml
+
+### IntelliJ IDEA ###
 .idea
+*.iws
+*.iml
+*.ipr
+/out/
+
+
+HELP.md
+.gradle
 /build/
+!gradle/wrapper/gradle-wrapper.jar
+
+node_modules/

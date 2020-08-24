@@ -13,12 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * 로그인 실패 핸들러
- *
- * @author Giwoon Koo
- * @date 2019-04-09
- */
 @Component
 @Slf4j
 public class AuthenticationFailureHandlerImpl implements AuthenticationFailureHandler {

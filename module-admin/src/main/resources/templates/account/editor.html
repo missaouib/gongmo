@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout}">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/css/table-style.css" th:href="@{/css/table-style.css}">
+</head>
+<body>
+<div layout:fragment="content">
+    <div th:replace="/fragments/utilFragment::navigator('/account', '회원', '회원 관리')"></div>
+    <section class="content" th:with="YNType = ${T(com.gig.lookBook.core.model.types.YNType)}">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <form name="frmRegister" id="frmRegister" class="form-horizontal" th:with="isModify = ${dto != null}">
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table class="table" id="userTable">
+                                    <thead>
+                                    <tr>
+                                        <th class="no-padding" colspan="12"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th class="col-md-2 th_color" scope="row" colspan="2">
+                                            <label class="control-label">회원번호 <i class="fa fa-certificate text-red" aria-hidden="true"></i>
+                                            </label>
+                                        </th>
+                                        <td class="col-md-4" colspan="4">
+                                            <label class="control-label"></label>
+                                        </td>
+                                        <th class="col-md-2 th_color" scope="row" colspan="2">
+                                            <label class="control-label">ID <i class="fa fa-certificate text-red" aria-hidden="true"></i>
+                                            </label>
+                                        </th>
+                                        <td class="col-md-4" colspan="4" >
+                                            <input type="text" class="form-control" name="username">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="col-md-2 th_color" scope="row" colspan="2">
+                                            <label class="control-label">이름 <i class="fa fa-certificate text-red" aria-hidden="true"></i>
+                                            </label>
+                                        </th>
+                                        <td class="col-md-4" colspan="4" >
+                                            <input type="text" class="form-control" name="name">
+                                        </td>
+                                        <th class="col-md-2 th_color" scope="row" colspan="2">
+                                            <label class="control-label">이메일 <i class="fa fa-certificate text-red" aria-hidden="true"></i>
+                                            </label>
+                                        </th>
+                                        <td class="col-md-4" colspan="4">
+                                            <input type="text" class="form-control" name="email">
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table> <!-- /.table table-hover table-striped -->
+                            </div> <!-- ./table-responsive mailbox-messages -->
+                        </div>
+                        <div class="box-footer">
+                            <div class="pull-right">
+                                <a href="/account" class="btn btn-default btn-sm" id="btnBack"><i class="fa fa-list"></i> 목록</a>
+                                <button type="button" class="btn btn-primary btn-sm" id="btnSave"><i class="fa fa-plus"></i> 저장</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<section layout:fragment="script">
+    <script th:inline="javascript">
+    </script>
+    <script src="/static/modules/jquery-ui/jquery-ui.min.js" th:src="@{/modules/jquery-ui/jquery-ui.min.js}"></script>
+    <script src="/static/js/account/account_editor.js" th:src="@{/js/account/account_editor.js}"></script>
+</section>
+</body>
+</html>

@@ -1,6 +1,6 @@
 package com.gig.lookBook.core.security.component;
 
-import com.gig.lookBook.core.dto.MenuDto;
+import com.gig.lookBook.core.dto.menu.MenuDto;
 import com.gig.lookBook.core.exception.RequiredParamNonException;
 import com.gig.lookBook.core.model.Account;
 import com.gig.lookBook.core.model.types.MenuType;
