@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: local
+    active: gig
   jpa:
     properties:
       jadira.usertype.autoRegisterUserTypes: true
