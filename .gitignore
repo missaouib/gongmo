@@ -4,7 +4,7 @@
 /module-web/build/
 /module-admin/build/
 
-.yml
+/module-admin/src/main/resources/application-local.yml
 
 ### IntelliJ IDEA ###
 .idea

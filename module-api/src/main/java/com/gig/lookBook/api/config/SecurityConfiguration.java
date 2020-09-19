@@ -29,7 +29,7 @@ import javax.sql.DataSource;
 @RequiredArgsConstructor
 public class SecurityConfiguration extends AbstractSecurityConfiguration {
 
-    private final UserDetailsService userDetailsService;
+    private UserDetailsService userDetailsService;
     private final DataSource dataSource;
 
     @Bean

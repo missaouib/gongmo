@@ -17,7 +17,9 @@ public class IndexController {
     
     @RequestMapping
     public ModelAndView index(@AuthenticationPrincipal LoginUser loginUser, HttpServletRequest request) throws NotFoundException, ParseException {
-
+        if (loginUser != null) {
+            return new ModelAndView("index-after-login");
+        }
         ModelAndView mav = new ModelAndView("index");
         return mav;
     }
