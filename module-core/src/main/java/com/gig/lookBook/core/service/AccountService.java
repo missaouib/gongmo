@@ -41,7 +41,6 @@ public class AccountService {
     private final AccountRepository accountRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
-    private final ModelMapper modelMapper;
 
     @PersistenceContext
     private EntityManager em;
