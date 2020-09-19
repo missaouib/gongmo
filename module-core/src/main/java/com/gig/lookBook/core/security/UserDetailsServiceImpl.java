@@ -40,6 +40,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         Account account;
         try {
             account = accountService.findByUsername(username);
+            log.info("ttt");
         } catch (UserNotFoundException e) {
             String msg = "User Not found: " + username;
             log.error(msg);
